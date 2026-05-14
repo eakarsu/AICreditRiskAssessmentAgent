@@ -31,15 +31,17 @@ export default function Dashboard() {
           api.get('/regulatory'),
           api.get('/pricing'),
         ]);
+        const total = (resp) => resp.data?.pagination?.total
+          ?? (Array.isArray(resp.data) ? resp.data.length : (resp.data?.data?.length || 0));
         setCounts({
-          applicants: a.data.length,
-          assessments: b.data.length,
-          portfolio: c.data.length,
-          fraud: d.data.length,
-          earlyWarning: e.data.length,
-          collateral: f.data.length,
-          regulatory: g.data.length,
-          pricing: h.data.length,
+          applicants: total(a),
+          assessments: total(b),
+          portfolio: total(c),
+          fraud: total(d),
+          earlyWarning: total(e),
+          collateral: total(f),
+          regulatory: total(g),
+          pricing: total(h),
         });
       } catch (err) { console.error(err); }
     };

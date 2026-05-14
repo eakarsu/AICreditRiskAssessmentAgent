@@ -132,6 +132,7 @@ const EarlyWarning = sequelize.define('EarlyWarning', {
   description: { type: DataTypes.TEXT },
   recommendedAction: { type: DataTypes.TEXT },
   status: { type: DataTypes.STRING, defaultValue: 'active' },
+  isActive: { type: DataTypes.BOOLEAN, defaultValue: true },
   acknowledgedAt: { type: DataTypes.DATE },
   aiAnalysis: { type: DataTypes.TEXT },
 });
@@ -152,6 +153,19 @@ const PricingModel = sequelize.define('PricingModel', {
   fees: { type: DataTypes.DECIMAL(5, 2) },
   status: { type: DataTypes.STRING, defaultValue: 'active' },
   aiOptimization: { type: DataTypes.TEXT },
+});
+
+// AI Result audit trail (JSONB for full payload, including parsed structured fields)
+const AIResult = sequelize.define('AIResult', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  endpoint: { type: DataTypes.STRING, allowNull: false }, // e.g. "assess-risk"
+  entityType: { type: DataTypes.STRING }, // e.g. "Applicant"
+  entityId: { type: DataTypes.INTEGER },
+  userId: { type: DataTypes.INTEGER },
+  model: { type: DataTypes.STRING },
+  promptHash: { type: DataTypes.STRING },
+  result: { type: DataTypes.JSONB }, // full AI response payload
+  usageTokens: { type: DataTypes.INTEGER },
 });
 
 // Associations
@@ -175,4 +189,5 @@ module.exports = {
   Collateral,
   EarlyWarning,
   PricingModel,
+  AIResult,
 };

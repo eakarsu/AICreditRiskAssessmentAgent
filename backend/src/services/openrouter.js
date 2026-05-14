@@ -1,8 +1,25 @@
 const https = require('https');
 
+/**
+ * 3-strategy JSON extractor for AI responses.
+ * 1) parse raw, 2) strip code fences, 3) extract first {...} block.
+ */
+function parseAIJson(text) {
+  if (typeof text !== 'string') return null;
+  try { return JSON.parse(text); } catch (e) {}
+  const stripped = text.replace(/```(?:json)?\n?/g, '').replace(/```/g, '').trim();
+  try { return JSON.parse(stripped); } catch (e) {}
+  const start = text.indexOf('{');
+  const end = text.lastIndexOf('}');
+  if (start !== -1 && end !== -1 && end > start) {
+    try { return JSON.parse(text.slice(start, end + 1)); } catch (e) {}
+  }
+  return null;
+}
+
 async function queryOpenRouter(prompt, systemPrompt = '') {
   const apiKey = process.env.OPENROUTER_API_KEY;
-  const model = process.env.OPENROUTER_MODEL || 'anthropic/claude-haiku-4.5';
+  const model = process.env.OPENROUTER_MODEL || 'anthropic/claude-3-5-sonnet-20241022';
 
   if (!apiKey || apiKey === 'your-openrouter-key-here') {
     return {
@@ -50,12 +67,15 @@ async function queryOpenRouter(prompt, systemPrompt = '') {
             });
           } else {
             const content = parsed.choices?.[0]?.message?.content || 'No response';
+            const parsedJson = parseAIJson(content);
             resolve({
               analysis: content,
+              parsed: parsedJson, // structured fields when AI returned JSON, else null
               model: parsed.model || model,
               timestamp: new Date().toISOString(),
               usage: parsed.usage,
               id: parsed.id,
+              ...(parsedJson && typeof parsedJson === 'object' ? parsedJson : {}),
             });
           }
         } catch (e) {
@@ -81,4 +101,4 @@ async function queryOpenRouter(prompt, systemPrompt = '') {
   });
 }
 
-module.exports = { queryOpenRouter };
+module.exports = { queryOpenRouter, parseAIJson };

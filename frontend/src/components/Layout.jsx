@@ -20,6 +20,7 @@ const navItems = [
     { path: '/regulatory', label: 'Compliance', icon: <FiBookOpen /> },
     { path: '/pricing', label: 'Pricing Models', icon: <FiDollarSign /> },
     { path: '/ai-chat', label: 'AI Assistant', icon: <FiMessageSquare /> },
+    { path: '/ai-advanced', label: 'AI Advanced', icon: <FiMessageSquare /> },
   ]},
 ];
 

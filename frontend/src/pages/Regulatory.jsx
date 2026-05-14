@@ -13,7 +13,7 @@ export default function Regulatory() {
   const [aiData, setAiData] = useState(null);
   const [aiLoading, setAiLoading] = useState(false);
 
-  const load = async () => { const { data } = await api.get('/regulatory'); setItems(data); };
+  const load = async () => { const { data } = await api.get('/regulatory'); setItems(Array.isArray(data) ? data : (data.data || [])); };
   useEffect(() => { load(); }, []);
 
   const handleSave = async () => {

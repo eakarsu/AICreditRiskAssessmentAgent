@@ -11,7 +11,23 @@ import CollateralPage from './pages/Collateral';
 import EarlyWarningPage from './pages/EarlyWarning';
 import PricingPage from './pages/Pricing';
 import AIChat from './pages/AIChat';
+import AIAdvanced from './pages/AIAdvanced';
 import Layout from './components/Layout';
+
+// // === Batch 02 Gaps & Frontend Mounts ===
+import CfPredictiveDefaultModeling from './pages/CfPredictiveDefaultModeling';
+import CfCollateralAwarePricing from './pages/CfCollateralAwarePricing';
+import CfPortfolioConcentrationAnalysis from './pages/CfPortfolioConcentrationAnalysis';
+import CfRegulatoryScenarioModeling from './pages/CfRegulatoryScenarioModeling';
+import CfCustomerLifetimeValueModeling from './pages/CfCustomerLifetimeValueModeling';
+import GapApplicantsLacksPredictApprovalLikelihood from './pages/GapApplicantsLacksPredictApprovalLikelihood';
+import GapExportLacksGenerateRegulatoryNarrative from './pages/GapExportLacksGenerateRegulatoryNarrative';
+import GapAssessmentsLacksAiDrivenUnderwritingCopilot from './pages/GapAssessmentsLacksAiDrivenUnderwritingCopilot';
+import GapNoCreditBureauIntegrationsEquifaxExperianTransunion from './pages/GapNoCreditBureauIntegrationsEquifaxExperianTransunion';
+import GapNoWorkflowAutomationAutoApprovalForLowRiskAutoEscal from './pages/GapNoWorkflowAutomationAutoApprovalForLowRiskAutoEscal';
+import GapLimitedThirdPartyIntegrationsNoSalesforceServicenowCo from './pages/GapLimitedThirdPartyIntegrationsNoSalesforceServicenowCo';
+import GapNoLoanOfficerMobileApp from './pages/GapNoLoanOfficerMobileApp';
+import GapNoWebhooks from './pages/GapNoWebhooks';
 
 export default function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -39,7 +55,22 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path="*" element={<Login onLogin={handleLogin} />} />
-        </Routes>
+        
+        {/* // === Batch 02 Gaps & Frontend Mounts === */}
+        <Route path="/cf/predictive-default-modeling" element={<CfPredictiveDefaultModeling />} />
+        <Route path="/cf/collateral-aware-pricing" element={<CfCollateralAwarePricing />} />
+        <Route path="/cf/portfolio-concentration-analysis" element={<CfPortfolioConcentrationAnalysis />} />
+        <Route path="/cf/regulatory-scenario-modeling" element={<CfRegulatoryScenarioModeling />} />
+        <Route path="/cf/customer-lifetime-value-modeling" element={<CfCustomerLifetimeValueModeling />} />
+        <Route path="/gap/applicants-lacks-predict-approval-likelihood" element={<GapApplicantsLacksPredictApprovalLikelihood />} />
+        <Route path="/gap/export-lacks-generate-regulatory-narrative" element={<GapExportLacksGenerateRegulatoryNarrative />} />
+        <Route path="/gap/assessments-lacks-ai-driven-underwriting-copilot" element={<GapAssessmentsLacksAiDrivenUnderwritingCopilot />} />
+        <Route path="/gap/no-credit-bureau-integrations-equifax-experian-transunion" element={<GapNoCreditBureauIntegrationsEquifaxExperianTransunion />} />
+        <Route path="/gap/no-workflow-automation-auto-approval-for-low-risk-auto-escal" element={<GapNoWorkflowAutomationAutoApprovalForLowRiskAutoEscal />} />
+        <Route path="/gap/limited-third-party-integrations-no-salesforce-servicenow-co" element={<GapLimitedThirdPartyIntegrationsNoSalesforceServicenowCo />} />
+        <Route path="/gap/no-loan-officer-mobile-app" element={<GapNoLoanOfficerMobileApp />} />
+        <Route path="/gap/no-webhooks" element={<GapNoWebhooks />} />
+      </Routes>
       </BrowserRouter>
     );
   }
@@ -58,6 +89,7 @@ export default function App() {
           <Route path="/early-warning" element={<EarlyWarningPage />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/ai-chat" element={<AIChat />} />
+          <Route path="/ai-advanced" element={<AIAdvanced />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Layout>

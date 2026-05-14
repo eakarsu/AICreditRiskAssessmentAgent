@@ -13,7 +13,7 @@ export default function Portfolio() {
   const [aiData, setAiData] = useState(null);
   const [aiLoading, setAiLoading] = useState(false);
 
-  const load = async () => { const { data } = await api.get('/portfolio'); setItems(data); };
+  const load = async () => { const { data } = await api.get('/portfolio'); setItems(Array.isArray(data) ? data : (data.data || [])); };
   useEffect(() => { load(); }, []);
 
   const handleSave = async () => {

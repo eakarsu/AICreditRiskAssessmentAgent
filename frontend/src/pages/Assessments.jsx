@@ -16,9 +16,9 @@ export default function Assessments() {
 
   const load = async () => {
     const { data } = await api.get('/assessments');
-    setItems(data);
+    setItems(Array.isArray(data) ? data : (data.data || []));
     const { data: apps } = await api.get('/applicants');
-    setApplicants(apps);
+    setApplicants(Array.isArray(apps) ? apps : (apps.data || []));
   };
   useEffect(() => { load(); }, []);
 

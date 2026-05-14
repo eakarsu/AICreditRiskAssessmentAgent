@@ -15,8 +15,8 @@ export default function EarlyWarningPage() {
   const [applicants, setApplicants] = useState([]);
 
   const load = async () => {
-    const { data } = await api.get('/early-warning'); setItems(data);
-    const { data: apps } = await api.get('/applicants'); setApplicants(apps);
+    const { data } = await api.get('/early-warning'); setItems(Array.isArray(data) ? data : (data.data || []));
+    const { data: apps } = await api.get('/applicants'); setApplicants(Array.isArray(apps) ? apps : (apps.data || []));
   };
   useEffect(() => { load(); }, []);
 

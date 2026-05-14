@@ -15,7 +15,7 @@ export default function Applicants() {
 
   const load = async () => {
     const { data } = await api.get('/applicants');
-    setItems(data);
+    setItems(Array.isArray(data) ? data : (data.data || []));
   };
   useEffect(() => { load(); }, []);
 
