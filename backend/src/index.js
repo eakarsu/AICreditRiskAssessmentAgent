@@ -60,6 +60,7 @@ app.use('/api/ai', require('./routes/concentration'));
 app.use('/api/ai', require('./routes/collateralPricing'));
 app.use('/api/ai', require('./routes/defaultModeling'));
 app.use('/api/export', exportRoutes);
+app.use('/api/custom-views', require('./routes/customViews'));
 
 // Health check
 app.get('/api/health', (req, res) => {

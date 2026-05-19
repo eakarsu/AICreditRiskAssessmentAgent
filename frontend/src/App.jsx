@@ -12,6 +12,7 @@ import EarlyWarningPage from './pages/EarlyWarning';
 import PricingPage from './pages/Pricing';
 import AIChat from './pages/AIChat';
 import AIAdvanced from './pages/AIAdvanced';
+import CustomViewsPage from './pages/CustomViewsPage';
 import Layout from './components/Layout';
 
 // // === Batch 02 Gaps & Frontend Mounts ===
@@ -90,6 +91,7 @@ export default function App() {
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/ai-chat" element={<AIChat />} />
           <Route path="/ai-advanced" element={<AIAdvanced />} />
+          <Route path="/custom-views" element={<CustomViewsPage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Layout>

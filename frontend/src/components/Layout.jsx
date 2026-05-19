@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { FiHome, FiUsers, FiFileText, FiPieChart, FiShield, FiBookOpen, FiBox, FiAlertTriangle, FiDollarSign, FiMessageSquare, FiLogOut } from 'react-icons/fi';
+import { FiHome, FiUsers, FiFileText, FiPieChart, FiShield, FiBookOpen, FiBox, FiAlertTriangle, FiDollarSign, FiMessageSquare, FiLogOut, FiBarChart2 } from 'react-icons/fi';
 
 const navItems = [
   { section: 'Overview', items: [
@@ -21,6 +21,9 @@ const navItems = [
     { path: '/pricing', label: 'Pricing Models', icon: <FiDollarSign /> },
     { path: '/ai-chat', label: 'AI Assistant', icon: <FiMessageSquare /> },
     { path: '/ai-advanced', label: 'AI Advanced', icon: <FiMessageSquare /> },
+  ]},
+  { section: 'Custom Views', items: [
+    { path: '/custom-views', label: 'Risk Views', icon: <FiBarChart2 /> },
   ]},
 ];
 
