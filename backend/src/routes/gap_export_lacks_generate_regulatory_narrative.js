@@ -80,7 +80,7 @@ router.post('/', auth, async (req, res) => {
       return res.status(400).json({ error: 'Request body is required' });
     }
     if (!FEATURE_KEY) res.set('X-Feature-Credentials-Missing', 'FEATURE_GAP_EXPORT_LACKS_GENERATE_REGULATORY_NARRATIVE_KEY');
-    const ai = await callLLM({ feature: 'gap-export-lacks-generate-regulatory-narrative', goal: ''export' lacks '/generate-regulatory-narrative'.', input: payload });
+    const ai = await callLLM({ feature: 'gap-export-lacks-generate-regulatory-narrative', goal: "'export' lacks '/generate-regulatory-narrative'.", input: payload });
     try {
       await ensureGapTable();
       if (pool && pool.query) {

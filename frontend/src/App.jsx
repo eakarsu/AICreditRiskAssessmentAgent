@@ -13,6 +13,7 @@ import PricingPage from './pages/Pricing';
 import AIChat from './pages/AIChat';
 import AIAdvanced from './pages/AIAdvanced';
 import CustomViewsPage from './pages/CustomViewsPage';
+import CovenantBreachRisk from './pages/CovenantBreachRisk';
 import Layout from './components/Layout';
 
 // // === Batch 02 Gaps & Frontend Mounts ===
@@ -29,6 +30,9 @@ import GapNoWorkflowAutomationAutoApprovalForLowRiskAutoEscal from './pages/GapN
 import GapLimitedThirdPartyIntegrationsNoSalesforceServicenowCo from './pages/GapLimitedThirdPartyIntegrationsNoSalesforceServicenowCo';
 import GapNoLoanOfficerMobileApp from './pages/GapNoLoanOfficerMobileApp';
 import GapNoWebhooks from './pages/GapNoWebhooks';
+
+import CodexCustomVizFeature from './pages/CodexCustomVizFeature';
+import CodexOperationsFeature from './pages/CodexOperationsFeature';
 
 export default function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -55,6 +59,9 @@ export default function App() {
     return (
       <BrowserRouter>
         <Routes>
+        <Route path="/codex/custom-viz" element={<CodexCustomVizFeature />} />
+        <Route path="/codex/operations" element={<CodexOperationsFeature />} />
+
           <Route path="*" element={<Login onLogin={handleLogin} />} />
         
         {/* // === Batch 02 Gaps & Frontend Mounts === */}
@@ -92,6 +99,7 @@ export default function App() {
           <Route path="/ai-chat" element={<AIChat />} />
           <Route path="/ai-advanced" element={<AIAdvanced />} />
           <Route path="/custom-views" element={<CustomViewsPage />} />
+          <Route path="/covenant-breach-risk" element={<CovenantBreachRisk />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Layout>

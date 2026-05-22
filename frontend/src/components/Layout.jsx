@@ -14,6 +14,7 @@ const navItems = [
   { section: 'Risk Management', items: [
     { path: '/fraud', label: 'Fraud Detection', icon: <FiShield />, badge: '4' },
     { path: '/early-warning', label: 'Early Warnings', icon: <FiAlertTriangle />, badge: '12' },
+    { path: '/covenant-breach-risk', label: 'Covenant Risk', icon: <FiAlertTriangle /> },
     { path: '/collateral', label: 'Collateral', icon: <FiBox /> },
   ]},
   { section: 'Administration', items: [

@@ -61,6 +61,7 @@ app.use('/api/ai', require('./routes/collateralPricing'));
 app.use('/api/ai', require('./routes/defaultModeling'));
 app.use('/api/export', exportRoutes);
 app.use('/api/custom-views', require('./routes/customViews'));
+app.use('/api/covenant-breach-risk', require('./routes/covenantBreachRisk'));
 
 // Health check
 app.get('/api/health', (req, res) => {
