@@ -74,7 +74,6 @@ async function queryOpenRouter(prompt, systemPrompt = '') {
               model: parsed.model || model,
               timestamp: new Date().toISOString(),
               usage: parsed.usage,
-              id: parsed.id,
               ...(parsedJson && typeof parsedJson === 'object' ? parsedJson : {}),
             });
           }
