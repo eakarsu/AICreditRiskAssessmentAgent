@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { FiHome, FiUsers, FiFileText, FiPieChart, FiShield, FiBookOpen, FiBox, FiAlertTriangle, FiDollarSign, FiMessageSquare, FiLogOut, FiBarChart2 } from 'react-icons/fi';
+import { FiHome, FiUsers, FiFileText, FiPieChart, FiShield, FiBookOpen, FiBox, FiAlertTriangle, FiDollarSign, FiMessageSquare, FiLogOut, FiBarChart2, FiCpu, FiUploadCloud, FiClipboard, FiBell, FiSmartphone } from 'react-icons/fi';
 
 const navItems = [
   { section: 'Overview', items: [
@@ -25,6 +25,23 @@ const navItems = [
   ]},
   { section: 'Custom Views', items: [
     { path: '/custom-views', label: 'Risk Views', icon: <FiBarChart2 /> },
+  ]},
+  { section: 'Platform Expansion', items: [
+    { path: '/features/credit-bureau-integrations', label: 'Credit Bureaus', icon: <FiUploadCloud /> },
+    { path: '/features/bank-cash-flow-analysis', label: 'Cash Flow', icon: <FiDollarSign /> },
+    { path: '/features/document-ocr', label: 'Document OCR', icon: <FiFileText /> },
+    { path: '/features/underwriting-rules-engine', label: 'Rules Engine', icon: <FiCpu /> },
+    { path: '/features/approval-workflow', label: 'Approval Workflow', icon: <FiClipboard /> },
+    { path: '/features/loan-origination', label: 'Loan Origination', icon: <FiUsers /> },
+    { path: '/features/adverse-action-mapping', label: 'Adverse Action', icon: <FiBookOpen /> },
+    { path: '/features/model-monitoring', label: 'Model Monitoring', icon: <FiBarChart2 /> },
+    { path: '/features/decision-audit-trail', label: 'Decision Audit', icon: <FiShield /> },
+    { path: '/features/notifications-webhooks', label: 'Notifications', icon: <FiBell /> },
+    { path: '/features/customer-portal', label: 'Customer Portal', icon: <FiUsers /> },
+    { path: '/features/loan-officer-mobile', label: 'Loan Officer Mobile', icon: <FiSmartphone /> },
+    { path: '/features/rate-sheets-eligibility', label: 'Rate Sheets', icon: <FiDollarSign /> },
+    { path: '/features/portfolio-stress-testing', label: 'Stress Testing', icon: <FiPieChart /> },
+    { path: '/features/examiner-reports', label: 'Examiner Reports', icon: <FiBookOpen /> },
   ]},
 ];
 

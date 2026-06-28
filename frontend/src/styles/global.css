@@ -1003,6 +1003,95 @@ a { text-decoration: none; color: inherit; }
   color: var(--text-muted);
 }
 
+.feature-suite-layout {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.feature-suite-picker {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  position: sticky;
+  top: 18px;
+  max-height: calc(100vh - 36px);
+  overflow-y: auto;
+}
+
+.feature-picker-title {
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 8px 10px;
+}
+
+.feature-picker-item {
+  width: 100%;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: grid;
+  gap: 3px;
+  padding: 10px;
+  text-align: left;
+  transition: all 0.15s;
+}
+
+.feature-picker-item:hover,
+.feature-picker-item.active {
+  background: rgba(26, 86, 219, 0.12);
+  border-color: rgba(26, 86, 219, 0.28);
+  color: var(--text-primary);
+}
+
+.feature-picker-item span {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.feature-picker-item small {
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+.feature-suite-main {
+  min-width: 0;
+}
+
+.feature-analysis-anchor {
+  scroll-margin-top: 20px;
+  margin-bottom: 16px;
+}
+
+.covenant-panel {
+  margin-bottom: 16px;
+}
+
+.covenant-body {
+  padding: 18px 20px 20px;
+}
+
+.sample-fill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.field-helper {
+  color: var(--text-muted);
+  font-size: 11px;
+  line-height: 1.4;
+  margin-top: 5px;
+}
+
 .ai-analysis-footer {
   display: flex;
   align-items: center;
@@ -1070,6 +1159,8 @@ a { text-decoration: none; color: inherit; }
   .sidebar { width: 240px; }
   .main-content { margin-left: 240px; }
   .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .feature-suite-layout { grid-template-columns: 1fr; }
+  .feature-suite-picker { position: static; max-height: none; }
 }
 
 @media (max-width: 768px) {
