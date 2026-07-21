@@ -1,4 +1,5 @@
 require('dotenv').config({ path: require('path').join(__dirname, '../../.env') });
+require('./config/runtime').validateRuntime();
 const express = require('express');
 const cors = require('cors');
 let helmet;
@@ -73,31 +74,7 @@ async function start() {
   try {
     await sequelize.authenticate();
     console.log('Database connected');
-    await sequelize.sync({ alter: true });
-    console.log('Models synced');
-// // === Batch 02 Gaps & Frontend Mounts ===
-app.use('/api/gap-applicants-lacks-predict-approval-likelihood', require('./routes/gap_applicants_lacks_predict_approval_likelihood'));
-
-// // === Batch 02 Gaps & Frontend Mounts ===
-app.use('/api/gap-export-lacks-generate-regulatory-narrative', require('./routes/gap_export_lacks_generate_regulatory_narrative'));
-
-// // === Batch 02 Gaps & Frontend Mounts ===
-app.use('/api/gap-assessments-lacks-ai-driven-underwriting-copilot', require('./routes/gap_assessments_lacks_ai_driven_underwriting_copilot'));
-
-// // === Batch 02 Gaps & Frontend Mounts ===
-app.use('/api/gap-no-credit-bureau-integrations-equifax-experian-transunion', require('./routes/gap_no_credit_bureau_integrations_equifax_experian_transunion'));
-
-// // === Batch 02 Gaps & Frontend Mounts ===
-app.use('/api/gap-no-workflow-automation-auto-approval-for-low-risk-auto-escal', require('./routes/gap_no_workflow_automation_auto_approval_for_low_risk_auto_escal'));
-
-// // === Batch 02 Gaps & Frontend Mounts ===
-app.use('/api/gap-limited-third-party-integrations-no-salesforce-servicenow-co', require('./routes/gap_limited_third_party_integrations_no_salesforce_servicenow_co'));
-
-// // === Batch 02 Gaps & Frontend Mounts ===
-app.use('/api/gap-no-loan-officer-mobile-app', require('./routes/gap_no_loan_officer_mobile_app'));
-
-// // === Batch 02 Gaps & Frontend Mounts ===
-app.use('/api/gap-no-webhooks', require('./routes/gap_no_webhooks'));
+    console.log('Database schema validated; run scripts/migrate.sh for schema changes');
 
     app.listen(PORT, () => {
       console.log(`Backend running on port ${PORT}`);
