@@ -64,6 +64,7 @@ app.use('/api/export', exportRoutes);
 app.use('/api/custom-views', require('./routes/customViews'));
 app.use('/api/covenant-breach-risk', require('./routes/covenantBreachRisk'));
 app.use('/api/feature-suite', require('./routes/featureSuite'));
+app.use('/api', require('./routes/generatedFeatures').router);
 
 // Health check
 app.get('/api/health', (req, res) => {
