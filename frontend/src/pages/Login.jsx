@@ -21,9 +21,15 @@ export default function Login({ onLogin }) {
     }
   };
 
-  const autoFill = () => {
-    setEmail(import.meta.env.VITE_DEMO_EMAIL || '');
-    setPassword(import.meta.env.VITE_DEMO_PASSWORD || '');
+  const autoFill = async () => {
+    setError('');
+    try {
+      const { data } = await api.get('/auth/demo-credentials');
+      setEmail(data.email);
+      setPassword(data.password);
+    } catch (err) {
+      setError(err.response?.data?.error || 'Demo credentials are unavailable');
+    }
   };
 
   return (
@@ -51,8 +57,8 @@ export default function Login({ onLogin }) {
           </button>
         </form>
 
-        <button className="btn-auto-fill" onClick={autoFill}>
-          🔑 Auto-fill Demo Credentials
+        <button className="btn-auto-fill" onClick={autoFill} aria-label="Auto Fill Demo Credentials">
+          🔑 Auto Fill Demo Credentials
         </button>
       </div>
     </div>
