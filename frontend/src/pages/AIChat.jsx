@@ -1,3 +1,4 @@
+import NativeAIControls from "../components/NativeAIControls.jsx";
 import React, { useState } from 'react';
 import api from '../services/api';
 import AIAnalysis from '../components/AIAnalysis';
@@ -32,7 +33,7 @@ export default function AIChat() {
   };
 
   return (
-    <div>
+    <NativeAIControls busy={loading} context="CreditRiskAssessmentAgent"><div>
       <div className="page-header">
         <div><h1>AI Assistant</h1><p>Chat with AI for credit risk insights and analysis</p></div>
       </div>
@@ -66,7 +67,7 @@ export default function AIChat() {
 
       <div style={{ position: 'sticky', bottom: 24, background: 'var(--bg-primary)', paddingTop: 16 }}>
         <form onSubmit={(e) => { e.preventDefault(); sendMessage(); }} style={{ display: 'flex', gap: 12 }}>
-          <input
+          <input data-ai-field={"input"}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Ask about credit risk, fraud detection, compliance..."
@@ -76,6 +77,6 @@ export default function AIChat() {
           <button type="submit" className="btn btn-primary btn-lg" disabled={loading || !input.trim()}>Send</button>
         </form>
       </div>
-    </div>
+    </div></NativeAIControls>
   );
 }

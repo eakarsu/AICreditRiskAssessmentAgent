@@ -1,34 +1,51 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import api from '../services/api';
 
 export default function Login({ onLogin }) {
+  const demoLoginLock = useRef(false);
+  const [demoLoginBusy, setDemoLoginBusy] = useState(false);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const login = async (credentials) => {
     setLoading(true);
     setError('');
     try {
-      const { data } = await api.post('/auth/login', { email, password });
+      const { data } = await api.post('/auth/login', credentials);
       onLogin(data.token, data.user);
+      return true;
     } catch (err) {
       setError(err.response?.data?.error || 'Login failed');
+      return false;
     } finally {
       setLoading(false);
     }
   };
 
-  const autoFill = async () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    login({ email, password });
+  };
+
+  const loginAsDemo = async () => {
+    if (demoLoginLock.current) return;
+    demoLoginLock.current = true;
+    setDemoLoginBusy(true);
     setError('');
     try {
       const { data } = await api.get('/auth/demo-credentials');
+      if (!data.email || !data.password) throw new Error('Demo credentials are unavailable');
       setEmail(data.email);
       setPassword(data.password);
+      await login({ email: data.email, password: data.password });
     } catch (err) {
-      setError(err.response?.data?.error || 'Demo credentials are unavailable');
+      setError(err.response?.data?.error || err.message || 'Demo credentials are unavailable');
+    } finally {
+      demoLoginLock.current = false;
+      setDemoLoginBusy(false);
     }
   };
 
@@ -57,8 +74,14 @@ export default function Login({ onLogin }) {
           </button>
         </form>
 
-        <button className="btn-auto-fill" onClick={autoFill} aria-label="Auto Fill Demo Credentials">
-          🔑 Auto Fill Demo Credentials
+        <button
+          type="button"
+          disabled={loading || demoLoginBusy}
+          className="btn-auto-fill"
+          onClick={loginAsDemo}
+          aria-label="Log In as Demo"
+        >
+          {demoLoginBusy ? 'Signing in as Demo...' : '🔑 Log In as Demo'}
         </button>
       </div>
     </div>

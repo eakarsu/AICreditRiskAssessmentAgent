@@ -1,3 +1,4 @@
+import AIReportLibrary from "./AIReportLibrary";
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { FiHome, FiUsers, FiFileText, FiPieChart, FiShield, FiBookOpen, FiBox, FiAlertTriangle, FiDollarSign, FiMessageSquare, FiLogOut, FiBarChart2, FiCpu, FiUploadCloud, FiClipboard, FiBell, FiSmartphone } from 'react-icons/fi';
@@ -94,7 +95,7 @@ export default function Layout({ user, onLogout, children }) {
             Sign Out
           </button>
         </div>
-      </aside>
+      <AIReportLibrary /></aside>
 
       <main className="main-content">
         {children}
