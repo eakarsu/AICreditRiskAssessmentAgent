@@ -18,6 +18,8 @@ router.get('/', auth, async (req, res) => {
 
     const where = {};
     if (req.query.employmentStatus) where.employmentStatus = req.query.employmentStatus;
+    if (req.query.status) where.status = req.query.status;
+    if (req.query.search) { const { Op } = require('sequelize'); const s = '%' + req.query.search + '%'; where[Op.or] = [{ firstName: { [Op.iLike]: s } }, { lastName: { [Op.iLike]: s } }, { email: { [Op.iLike]: s } }, { employerName: { [Op.iLike]: s } }]; }
 
     const { count, rows } = await Applicant.findAndCountAll({
       where,

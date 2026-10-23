@@ -66,6 +66,8 @@ app.use('/api/covenant-breach-risk', require('./routes/covenantBreachRisk'));
 app.use('/api/feature-suite', require('./routes/featureSuite'));
 app.use('/api', require('./routes/generatedFeatures').router);
 
+app.use('/api/feature-pack32a', require('./routes/featurePack32A')({ sequelize: require('./models').sequelize, Applicant: require('./models').Applicant, auth: require('./middleware/auth') }));
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
